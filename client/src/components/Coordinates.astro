@@ -1,0 +1,92 @@
+---
+/* CHANGELOG
+
+*/
+
+/*
+Given Hex is W,H = 10.43,9.09
+vertical Increment is just H/2 for horizonal coordinates
+vertical Increment is H for first 6 Vertical coordinates
+H/2 = 4.545
+
+horizontal increment is distance between hex mid points
+if x = this distance
+then x = W/2 + a.
+with right triangles and assuming regular hexagon
+a = H/2 tan(30deg)
+
+x = W/2 + H/2 tan(30deg) = 7.8391
+
+horizontal increment is 0 for first 6 Vertical coordinates
+*/
+const hIncrement: number = 7.8391;
+const vIncrement: number = 4.545;
+
+const coordFontSize: number = 2;
+
+let hCoords: string[] = ['a','b','c','d','e','f','g','h','i','k','l']
+let vCoords: string[] = ['1','2','3','4','5','6','7','8','9','10','11']
+
+const hBase: number[]  = [12.25, 76.74];
+const vBase: number[]  = [7.93, 70.35];
+
+function hPlacement(index:number): number {
+  let res: number;
+
+  if(index >= 6) {
+    res = (hBase[1] + 10*vIncrement) - index*vIncrement
+  } else {
+    res = hBase[1] + index*vIncrement
+  }
+
+  return res;
+}
+
+function vPlacement(index:number, axis: string): number {
+  let res: number = 0;
+
+  switch(axis) {
+    case 'x':
+      if(index >= 6) {
+        res = vBase[0] + (index-5)*hIncrement
+      } else {
+        res = vBase[0]
+      }
+      break;
+    case 'y':
+      if(index >= 6) {
+        res = vBase[1] - (index+5)*vIncrement
+      } else {
+        res = vBase[1] - index*(2*vIncrement)
+      }
+      break;
+  }
+
+  return res;
+}
+---
+
+<svg viewBox="0 0 100 100">
+  <!-- Horizontal Coordinates -->
+  {hCoords.map((coord, index) =>(
+    <text 
+      x={hBase[0] + index*hIncrement} 
+      y={hPlacement(index)} 
+      font-size={coordFontSize}>
+        {coord}
+    </text>
+  ))}
+
+  <!-- Vertical Coordinates -->
+  {vCoords.map((coord, index) =>(
+    <text 
+      x={vPlacement(index, 'x')} 
+      y={vPlacement(index, 'y')} 
+      font-size={coordFontSize}>
+        {coord}
+    </text>
+  ))}
+
+  <!-- Temporary -->
+  <!-- <circle class="opacity-50 cursor-grab" cx="10.87" cy="72.72" r="5.215"/> -->
+</svg>

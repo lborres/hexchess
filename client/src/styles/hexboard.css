@@ -1,0 +1,77 @@
+.render-hex-chess-board {
+  background-image: url("../../public/hexboard_default.svg");
+  /* background-size: 88.69%; */
+  background-size: contain;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-origin: content-box;
+  display:block;
+  position:relative;
+
+  /* TODO Temporary Overflow */
+  overflow: visible;
+  top:0;
+  left:0;
+}
+
+.piece {
+  background-size: contain;
+  /* background-position: center center; */
+  background-repeat: no-repeat;
+  /* background-origin: content-box; */
+  box-sizing: border-box;
+  /* display:block; */
+  position:absolute;
+  width: 12.5%;
+  height: 12.5%;
+
+  top:0;
+  left:0;
+}
+
+/* White Pieces */
+.white-k {
+  background-image: url("../../public/pieces/king_white_45.svg");
+}
+.white-q {
+  background-image: url("../../public/pieces/queen_white_45.svg");
+}
+.white-b {
+  background-image: url("../../public/pieces/bishop_white_45.svg");
+}
+.white-n {
+  background-image: url("../../public/pieces/knight_white_45.svg");
+}
+.white-r {
+  background-image: url("../../public/pieces/rook_white_45.svg");
+}
+.white-p {
+  background-image: url("../../public/pieces/pawn_white_45.svg");
+}
+
+/* Black Pieces */
+.black-k {
+  background-image: url("../../public/pieces/king_black_45.svg");
+}
+.black-q {
+  background-image: url("../../public/pieces/queen_black_45.svg");
+}
+.black-b {
+  background-image: url("../../public/pieces/bishop_black_45.svg");
+}
+.black-n {
+  background-image: url("../../public/pieces/knight_black_45.svg");
+}
+.black-r {
+  background-image: url("../../public/pieces/rook_black_45.svg");
+}
+.black-p {
+  background-image: url("../../public/pieces/pawn_black_45.svg");
+}
+
+
+
+.hex-f6 {
+  transform: translate(calc(100%-50px), calc(100%+80px));
+  /* position: absolute; */
+}

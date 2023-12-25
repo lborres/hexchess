@@ -1,0 +1,37 @@
+---
+/* CHANGELOG
+
+*/
+
+import '../styles/hexboard.css'
+import Coordinates from './Coordinates.astro'
+---
+
+<hex-chess-board class="render-hex-chess-board h-fit w-1/3 noContextMenu relative">
+  <!-- Coordinates -->
+  <Coordinates />
+
+  <!-- Hex Highlights -->
+
+  <!-- Arrows -->
+
+  <!-- Pieces -->
+  <!-- <div class="piece white-k hex-f6"></div> -->
+
+
+</hex-chess-board>
+
+<script>
+  // Define custom html element <hex-chess-board>
+  class HexChessBoard extends HTMLElement {
+    constructor() {
+      super();
+    }
+  }
+  customElements.define('hex-chess-board', HexChessBoard);
+
+  // Prevent Context menu on the hexboard
+  [...document.querySelectorAll('.noContextMenu')].forEach(el => 
+    el.addEventListener('contextmenu', e => e.preventDefault())
+  );
+</script>
